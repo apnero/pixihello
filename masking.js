@@ -1,4 +1,4 @@
-var renderer = PIXI.autoDetectRenderer(1200, 600, { antialias: true });
+var renderer = PIXI.autoDetectRenderer(800, 600, { antialias: true });
 document.body.appendChild(renderer.view);
 
 // create the root of the scene graph
@@ -22,11 +22,6 @@ container.position.y = renderer.height / 2;
 
 // add a bunch of sprites
 
-var img1 = PIXI.Sprite.fromImage('http://lorempixel.com/400/200/');
-img1.position.set(200,300);
-container.addChild(img1);
-
-
 var bgFront = PIXI.Sprite.fromImage('assets/SceneRotate.jpg');
 bgFront.anchor.x = 0.5;
 bgFront.anchor.y = 0.5;
@@ -43,7 +38,7 @@ light1.anchor.x = 0.5;
 light1.anchor.y = 0.5;
 container.addChild(light1);
 
-var panda =  PIXI.Sprite.fromImage('http://lorempixel.com/400/200/');
+var panda =  PIXI.Sprite.fromImage('assets/panda.png');
 panda.anchor.x = 0.5;
 panda.anchor.y = 0.5;
 
@@ -83,34 +78,34 @@ help.position.y = renderer.height - 26;
 help.position.x = 10;
 stage.addChild(help);
 
-// animate();
+animate();
 
-// function animate()
-// {
-//     bg.rotation += 0.01;
-//     bgFront.rotation -= 0.01;
+function animate()
+{
+    bg.rotation += 0.01;
+    bgFront.rotation -= 0.01;
 
-//     light1.rotation += 0.02;
-//     light2.rotation += 0.01;
+    light1.rotation += 0.02;
+    light2.rotation += 0.01;
 
-//     panda.scale.x = 1 + Math.sin(count) * 0.04;
-//     panda.scale.y = 1 + Math.cos(count) * 0.04;
+    panda.scale.x = 1 + Math.sin(count) * 0.04;
+    panda.scale.y = 1 + Math.cos(count) * 0.04;
 
-//     count += 0.1;
+    count += 0.1;
 
-//     thing.clear();
+    thing.clear();
 
-//     thing.beginFill(0x8bc5ff, 0.4);
-//     thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count)* 20);
-//     thing.lineTo(-320 + Math.cos(count)* 20, 100 + Math.sin(count)* 20);
-//     thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count)* 20);
-//     thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count)* 20);
-//     thing.lineTo(-120 + Math.cos(count)* 20, 100 + Math.sin(count)* 20);
-//     thing.lineTo(-120 + Math.sin(count) * 20, -300 + Math.cos(count)* 20);
-//     thing.lineTo(-320 + Math.sin(count) * 20, -100 + Math.cos(count)* 20);
-//     thing.rotation = count * 0.1;
+    thing.beginFill(0x8bc5ff, 0.4);
+    thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count)* 20);
+    thing.lineTo(-320 + Math.cos(count)* 20, 100 + Math.sin(count)* 20);
+    thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count)* 20);
+    thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count)* 20);
+    thing.lineTo(-120 + Math.cos(count)* 20, 100 + Math.sin(count)* 20);
+    thing.lineTo(-120 + Math.sin(count) * 20, -300 + Math.cos(count)* 20);
+    thing.lineTo(-320 + Math.sin(count) * 20, -100 + Math.cos(count)* 20);
+    thing.rotation = count * 0.1;
 
 
-//     renderer.render(stage);
-//     requestAnimationFrame(animate);
-// }
+    renderer.render(stage);
+    requestAnimationFrame(animate);
+}
