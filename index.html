@@ -1,22 +1,46 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>pixi.js example 1</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			background-color: #000000;
-		}
-	</style>
-	<script src="pixi.min.js"></script>
+	<title>My PIXI</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/animate.css">
+	<script src="js/pixi.js"></script>
+
 </head>
+
 <body>
-	
-	<script src="masking.js"></script>
+	<h1 class="tlt">Check Out Awesome Text Effect</h1>
+	<script src="data/image.js"></script>
+	<script src="js/Charm.js"></script>
+  <script src="app.js"></script>
 
 
 </body>
 
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.lettering-0.6.1.min.js"></script>
+<script src="js/jquery.textillate.js"></script>
+<script src="js/jquery.fittext.js"></script>
+<script>
 
+$(function () {
+	$('.tlt').textillate({
+			in: { effect: 'fadeInUp',
+			    	callback: function() {
+			        $('.tlt').textillate('out');
+			    	},
+						delayScale: .5,
+						delay: 80
+		 	},
+			out: { effect: 'fadeOutUp',
+						delayScale: .5,
+						delay: 75
+			}
+	});
+	jQuery(".tlt").fitText();
+})
+
+
+
+</script>
 </html>
