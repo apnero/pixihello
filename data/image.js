@@ -1,12 +1,12 @@
-var blocksX = 4
-var blocksY = 3
-var blockSizeX = 480
-var blockSizeY = 360
-var numPictures = 3
-var numSteps = 8
+var blocksX = 4;
+var blocksY = 3;
+var blockSizeX = 480;
+var blockSizeY = 360;
+var numPictures = 3;
+var numSteps = 8;
 
-var image_container_position = [0,0]
-var image_position = []
+var image_container_position = [0,0];
+var image_position = [];
 
 
 
@@ -42,7 +42,7 @@ image_position.push(
         [-2,-4],[7,-4],[8,4],[9,0],[-2,-3],[-1,5],[8,9],[9,9],[6,2],[7,6],[8,10],[9,10]
       ]
     ]
-)
+);
 
 
 image_position.push(
