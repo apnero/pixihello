@@ -5,11 +5,16 @@
       content="width=device-width, initial-scale=1, user-scalable=no" />
 
 	<title>My PIXI</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/animate.css">
+	<!-- <link rel="stylesheet" type="text/css" href="stylesheets/animate.css"> -->
 	<script src="js/pixi.js"></script>
 	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/velocity.min.js"></script>
+	<script src="js/velocity.ui.js"></script>
+	<script src="js/jquery.blast.min.js"></script>
+	<script src="js/pixi-particles.min.js"></script>
+	<script src="emitter.js"></script>
 
 </head>
 
@@ -17,111 +22,184 @@
 	<!-- <div class="container-fluid"> -->
 
 	<!-- </div> -->
+	<!-- <script src="js/Charm.js"></script> -->
 	<script src="data/image.js"></script>
+	<script src="data/upperImage.js"></script>
 	<script src="loader.js"></script>
-	<script src="js/Charm.js"></script>
   <script src="app.js"></script>
 	<script src="main.js"></script>
+	<script src="jumpUp.js"></script>
+	<!-- <script src="setup.js"></script> -->
 
 
 
-	<h1 class="tlt">Check Out Awesome Text Effect</h1>
+	<div class="tlt firstLine">MOBILE</div>
+	<div class="tlt secondLine">DESIGN</div>
+	<div class="firstSlide firstLine">NATIVE</div>
+	<div class="firstSlide secondLine">APPLICATIONS</div>
+	<div class="firstSlide text">Android and IOS Development with Native Tools</div>
+	<div class="button jumpButton">Learn More<i class="blast icon-chevron-right"></i></div>
+
+
 				<!-- <div class="col-12"> -->
-			<h1 class="motto text-center" id="line1">Fitness</h1>
-			<!-- <h1 class="motto" id="line1">Our</h1> -->
-			<h1 class="motto text-center" id="line2">Aerial</h1>
+			<div class="logo" id="p">P</div>
+			<div class="logo" id="l">l</div>
+			<div class="logo" id="a">a</div>
+			<div class="logo" id="s">s</div>
+			<div class="logo" id="m">m</div>
+			<div class="logo" id="a2">a</div>
+			<div class="logo" id="s2">S</div>
+			<div class="logo" id="c">c</div>
+			<div class="logo" id="a3">a</div>
+			<div class="logo" id="p2">p</div>
+			<div class="logo" id="e">e</div>
+			<!-- <h1 class="motto" id="line1">Our</h1>
+			<h1 class="motto text-center" id="line2">Aerial</h1> -->
 
-						<a class ="hvr-sweep-to-top" id="title_button" onclick="start()" >Experience our rise</a>
-						<a class ="hvr-underline-from-left " id="first_button" onclick="start()" >SCROLL TO CONTINUE</a>
+						<p class ="hvr-sweep-to-top" id="title_button" onclick="start()" >Welcome</p>
+						<a class ="hvr-underline-from-left " id="first_button" >SCROLL TO CONTINUE</a>
+						<a class ="hvr-underline-from-left " id="second_button" >Jump Up</a>
+						<div id="jump_button" class="btn btn-blob">&times;</div>
+
 
 </body>
 
-
+<!--
 <script src="js/jquery.lettering-0.6.1.min.js"></script>
 <script src="js/jquery.textillate.js"></script>
-<script src="js/jquery.fittext.js"></script>
+<script src="js/jquery.fittext.js"></script> -->
 <script>
 
-$(function () {
+	$('.jumpButton').blast({ delimiter: "character" })
 
-	$('.tlt').textillate({
-			autoStart: false,
-			in: { effect: 'fadeInUp',
-			    	callback: function() {
-			        $('.tlt').textillate('out');
-			    	},
-						delayScale: .2,
-						delay: 50
-		 	},
-			out: { effect: 'fadeOutUp',
-						delayScale: .2,
-						delay: 45
-			}
-	});
-	jQuery(".tlt").fitText();
+	function startTitleText(){
+		var textDelay = 550;
+		var topLevel = window.innerHeight/2-window.innerHeight/8;
+
+		var percentTextWidth = window.innerWidth*.7;
+		var startIndent = window.innerWidth*.15 -35;
+
+		  $("#p")
+		    .velocity({left:startIndent})
+		    .delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+
+		  $("#l")
+		    .velocity({left: startIndent+percentTextWidth/10})
+		    .delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+
+			$("#a")
+					.velocity({left:startIndent+percentTextWidth*2/10})
+					.delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+			$("#s")
+					.velocity({left:startIndent+percentTextWidth*3/10})
+				.delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+			$("#m")
+					.velocity({left:startIndent+percentTextWidth*4/10})
+				.delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+
+			$("#a2")
+					.velocity({left:startIndent+percentTextWidth*5/10})
+					.delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+		$("#s2")
+					.velocity({left:startIndent+percentTextWidth*6/10})
+				.delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+			$("#c")
+					.velocity({left:startIndent+percentTextWidth*7/10})
+					.delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+			$("#a3")
+					.velocity({left:startIndent+percentTextWidth*8/10})
+					.delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+			$("#p2")
+					.velocity({left:startIndent+percentTextWidth*9/10})
+				.delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+			$("#e")
+					.velocity({left:startIndent+percentTextWidth})
+				.delay(textDelay)
+		  	.velocity({ top: topLevel, color: "#AC741A"});
+
+			$('#title_button').css({left:window.innerWidth/2-150})
+				.delay(1000).velocity({top: window.innerHeight*7/10 , opacity: 1});
+
+	};
+	// $('.tlt').textillate({
+	// 		autoStart: false,
+	// 		in: { effect: 'fadeInUp',
+	// 		    	callback: function() {
+	// 		        $('.tlt').textillate('out');
+	// 		    	},
+	// 					delayScale: .2,
+	// 					delay: 50
+	// 	 	},
+	// 		out: { effect: 'fadeOutUp',
+	// 					delayScale: .2,
+	// 					delay: 45
+	// 		}
+	// });
+	// jQuery(".tlt").fitText();
+
+//
+// 	$('#line1').textillate({
+// 			autoStart: false,
+// 			in: { effect: 'bounceInLeft',
+// 						delayScale: 1,
+// 						delay: 100,
+// 						shuffle: true,
+// 						callback: function() {
+// 							$( "#line1" ).animate({
+// 						     top: "+=165"
+// 						   }, 200, function() {
+// 						      $('#line1').css({'color': '#AC741A' });
+// 									$( "#line1" ).animate({
+// 										 top: "+=165"
+// 									 }, 200, function() {
+//
+// 									 });
+//
+// 						   });
+// 						},
+// 			},
+//
+// 	});
+//
+// 	$('#line2').textillate({
+// 			autoStart: false,
+// 			in: { effect: 'bounceInRight',
+// 			delayScale: 1,
+// 			delay: 100,
+// 			shuffle: true,
+// 			callback: function() {
+// 				$( "#line2" ).animate({
+// 					 bottom: "+=25"
+// 				 }, 300, function() {
+// 						$('#line2').css({'color': '#AC741A' });
+// 						$( "#line2" ).animate({
+// 							 bottom: "+=25"
+// 						 }, 100, function() {
+//
+// 						 });
+//
+// 				 });
+// 			},
+// },
+//
+// });
 
 
-	$('#line1').textillate({
-			autoStart: false,
-			in: { effect: 'bounceInLeft',
-						delayScale: 1,
-						delay: 100,
-						shuffle: true,
-						callback: function() {
-							$( "#line1" ).animate({
-						     top: "+=165"
-						   }, 200, function() {
-						      $('#line1').css({'color': '#AC741A' });
-									$( "#line1" ).animate({
-										 top: "+=165"
-									 }, 200, function() {
 
-									 });
-
-						   });
-						},
-			},
-
-	});
-
-	$('#line2').textillate({
-			autoStart: false,
-			in: { effect: 'bounceInRight',
-			delayScale: 1,
-			delay: 100,
-			shuffle: true,
-			callback: function() {
-				$( "#line2" ).animate({
-					 bottom: "+=25"
-				 }, 300, function() {
-						$('#line2').css({'color': '#AC741A' });
-						$( "#line2" ).animate({
-							 bottom: "+=25"
-						 }, 100, function() {
-
-						 });
-
-				 });
-			},
-},
-
-});
-
-
-
-
-})
-
-function moveTitleButton() {
-	$('#title_button').animate({
-								 top: "-=55",
-								 opacity: "+=1"
-							 }, 100, function() {
-
-							 });
-}
 
 function firstSlide(){
+
+
 	$('#first_button').animate({
 								 top: "-=55",
 								 opacity: "+=1"
@@ -129,13 +207,69 @@ function firstSlide(){
 
 							 });
 
-}
+	$( "#first_button" ).click(function() {
+		 				//alert("bye");
+						lowerStep = lowerStep+2;
+						cycleAnimate(image_position, image_dimensions, imageContainer, childOrderList, lowerStep);
+
+	});
+
+
+	$('.firstSlide').delay(1500)
+		.velocity('transition.slideUpBigIn', {
+			//delay: 800,
+			duration: 500,
+			stagger: 250
+		})
+
+		$('.blast').delay(2000)
+  // Fade the words into view using Velocity.js.
+  .velocity("transition.slideLeftBigIn", {
+		drag: true,
+		duration: 350,
+    stagger: 150,
+    delay: 150
+  });
+
+	$('.button').delay(2000).velocity({ opacity: 1 }, { duration: 1000 });
+
+	// $('#second_button').animate({
+	// 							 top: "-=35",
+	// 							 opacity: "+=1"
+	// 						 }, 100, function() {
+	//
+	// 						 });
+	//
+	// $( "#second_button" ).click(function() {
+	// 	 				jumpUp();
+	//
+	// });
+	//
+	// $('#jump_button').css({left:renderer.width*6/8-70, top:renderer.height*5/6-70, opacity: 1 });
+
+};
+
 
 function start() {
+	var startIndent = window.innerWidth*.15 -35;
 	$('#title_button').css({'opacity': 0 });
-	$('.motto').css({'opacity': 0 });
+	$('.logo').css({'opacity': 0 });
+	$('.tlt').delay(500)
+		.velocity('transition.slideUpBigIn', {
+      //delay: 800,
+      duration: 500,
+      stagger: 150,
+    })
+		.delay(600)
+    .velocity('transition.slideUpBigOut', {
+      //delay: 800,
+      duration: 500,
+      stagger: 150,
+    })
+	// $('.motto').css({'opacity': 0 });
+	//alert("hello");
 	mainFunction();
-}
+};
 
 </script>
 </html>

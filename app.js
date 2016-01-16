@@ -1,7 +1,4 @@
 
-
-
-
 GAME_WIDTH = 1920;
 GAME_HEIGHT = 1080;
 
@@ -22,13 +19,6 @@ renderer.view.style.left = "0px";
 
 // Size the renderer to fill the screen
 var stage = new PIXI.Container();
-stage.interactive = true;
-stage.on('click', onClick);
-stage.on('tap', onClick);
-function onClick() {
-  animate();
-
-}
 
 resize();
 

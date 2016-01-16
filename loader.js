@@ -3,14 +3,12 @@ function loaderAnimation(){
 
   var graphic = new PIXI.Graphics();
   graphic.beginFill(0xAC741A,1);
-  graphic.drawRect(0,0, GAME_WIDTH,GAME_HEIGHT/2);
+  graphic.drawRect(0,0, GAME_WIDTH,GAME_HEIGHT*3/4);
   graphic.endFill();
   var graphic2 = new PIXI.Graphics();
   graphic2.beginFill(0xAC741A,1);
-  graphic2.drawRect(0,GAME_HEIGHT/2, GAME_WIDTH,GAME_HEIGHT)  ;
+  graphic2.drawRect(0,GAME_HEIGHT*3/4, GAME_WIDTH,GAME_HEIGHT)  ;
   graphic2.endFill();
-  //var loadingContainerTop = new PIXI.Sprite(graphic.generateTexture(false));
-  //var loadingContainerBottom = new PIXI.Sprite(graphic2.generateTexture(false));
   stage.addChild(graphic);
   stage.addChild(graphic2);
 
@@ -32,17 +30,18 @@ function loaderAnimation(){
   countingText.position.y = GAME_HEIGHT/2;
   stage.addChild(countingText);
 
-  var aryaText = new PIXI.Text("Arya Fitness",
-        { font: '40px Arial', fill: '#FFFFFF', align: 'center',width: 200, height: GAME_HEIGHT/40 });
+  var aryaText = new PIXI.Text("PlasmaScape",
+        { fill: '#FFFFFF', align: 'center',width: 200, height: GAME_HEIGHT/60 });
   aryaText.anchor = new PIXI.Point(0.5, 0.5);
   aryaText.position.x = GAME_WIDTH/2;
   aryaText.position.y = GAME_HEIGHT/2;
+  aryaText.alpha = 0.5;
   stage.addChild(aryaText);
 
 
   //var i = 0;
   var grid = new PIXI.Container();
-  var line  = new PIXI.Graphics;
+  var line  = new PIXI.Graphics();
   line.lineStyle(2, 0xFFFFFF, 0.1);
 
   for (var i = 1; i < 4; i++) {
@@ -62,6 +61,7 @@ function loaderAnimation(){
 
   var titleImage;
 
+
   var loader = PIXI.loader
   .add("image0","assets/0.jpg")
   .add("image1","assets/1.jpg")
@@ -70,14 +70,23 @@ function loaderAnimation(){
   .add("image4","assets/4.jpg")
   .add("image5","assets/5.jpg")
   .add("title", "assets/title.jpg")
+  .add("android", "assets/android.jpg")
+  .add("ios", "assets/ios.jpg")
+  .add("button", "assets/button.png")
   .load(function (loader, resources) {
 
           imageArray.push(resources.image0.texture);
           imageArray.push(resources.image1.texture);
           imageArray.push(resources.image2.texture);
-          imageArray.push(resources.image3.texture);
-          imageArray.push(resources.image4.texture);
-          imageArray.push(resources.image5.texture);
+          imageArray.push(resources.android.texture);
+          imageArray.push(resources.ios.texture);
+          imageArray.push(resources.button.texture);
+
+          // imageArray.push(resources.image5.texture);
+          upperImageArray.push(resources.image3.texture);
+          upperImageArray.push(resources.image4.texture);
+          upperImageArray.push(resources.image5.texture);
+
           stage.addChildAt(new PIXI.Sprite(resources.title.texture), 0);
 
   })
@@ -91,6 +100,7 @@ function loaderAnimation(){
 
   loader.on('complete', function (loader, resources) {
 
+        //startTitleText();
         // $('#line1').textillate('start');
         // $('#line2').textillate('start');
 
@@ -107,7 +117,7 @@ function loaderAnimation(){
       aryaText.alpha = 0;
       //countingText.destroy();
     }
-    if(graphic.position.y + GAME_HEIGHT/2 < 0 )
+    if(graphic.position.y + GAME_HEIGHT*3/4 < 0 )
       return;
 
     graphic.position.y = graphic.position.y -20;
@@ -136,10 +146,9 @@ function loaderAnimation(){
       else if (countForText < 100)
         countingText.text = countForText;
       else {
-        $('#line1').textillate('start');
-        $('#line2').textillate('start');
-        setTimeout(moveTitleButton, 1500);
-        setTimeout(closingAnimate, 1500);
+       startTitleText();
+        //setTimeout(moveTitleButton, 1000);
+        setTimeout(closingAnimate, 1000);
 
         return;
       }

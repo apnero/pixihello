@@ -3,7 +3,16 @@ document.body.appendChild(renderer.view);
 
 
 var count = 0;
+
 var step = "horizontal";
+var startStep = 0;
+
+//image number
+var i=2;
+
+
+var imagePicture = 0;
+
   var array = [];
 // create the root of the scene graph
 var stage = new PIXI.Container();
@@ -13,35 +22,17 @@ stage.on('tap', onClick);
 function onClick() {
   animate();
 }
-// var graphic = new PIXI.Graphics()
-// graphic.beginFill(0xFFFFFF,0)
-// graphic.drawRect(0,0,1,1)
-// graphic.endFill()
-// var container = new PIXI.Sprite(graphic.generateTexture(false));
-// container.anchor = new PIXI.Point(.5, .5);
-//var container = new PIXI.Container();
-//container.position.x = image_container_position[0]
-//container.position.y = image_container_position[1]
-//container.pivot.x = 0
-//container.pivot.y = 0
+
 
 var container = new PIXI.Container();
-container.position.x = renderer.width /2;//-800 ;
+container.position.x = renderer.width /2;
 container.position.y = renderer.height/2;
 
 var imageArray = [];
 
 var loader = PIXI.loader
   .add("image","assets/1.jpg")
-  // .on('progress', function (loader, loadedResource) {
-  //     console.log('Progress:', loader.progress + '%');
-  // })
-  // .on('error', function (loader, loadedResource) {
-  //     console.log('error:', loader.progress + '%');
-  // })
-  // .on('load', function (loader, loadedResource) {
-  //     console.log('load:', loader.progress + '%');
-  // })
+
   .load(function (loader, resources) {
 
           imageArray.push(resources.image.texture);
@@ -54,24 +45,19 @@ loader.on('complete', function (loader, resources) {
 
 function mainfunction(imageArray, container) {
 
-    var  i = 0;
-    for (var y = 0; y < blocksY; y++) {
-      for (var x = 0; x < blocksX; x++) {
-          var sprite = new PIXI.Sprite(imageArray[i]);
-          sprite.position.x = x*blockSizeX - renderer.width / 2;//image_position[i][4][x+y*blocksX][0]-renderer.width / 2;
-          sprite.position.y = y*blockSizeY - renderer.height / 2;//image_position[i][4][x+y*blocksX][1]-renderer.height / 2;
-          var mask = new PIXI.Texture(imageArray[i], new PIXI.Rectangle(x*blockSizeX,y*blockSizeY, blockSizeX, blockSizeY));
+  var dimX = image_dimensions[i][0];
+  var dimY = image_dimensions[i][1];
+  for (var y = 0; y < dimY; y++) {
+    for (var x = 0; x < dimX; x++) {
+          var sprite = new PIXI.Sprite(imageArray[imagePicture]);
+          sprite.position.x = image_position[i][startStep][x+y*dimX][0]*blockSizeX-renderer.width/2;
+          sprite.position.y = image_position[i][startStep][x+y*dimX][1]*blockSizeY-renderer.height/2;
+          var mask = new PIXI.Texture(imageArray[imagePicture], new PIXI.Rectangle(x*blockSizeX,y*blockSizeY, blockSizeX, blockSizeY));
           sprite.texture = mask;
-          container.addChild(sprite);
-          //var child = container.getChildAt(x+y*blocksX)
-          //container.removeChildAt(x+ y*blocksX)
-          //container.addChildAt(sprite, x+ y*blocksX)
-          //var child = container.getChildAt(x+y*blocksX)
-          //console.log(child)
+        container.addChild(sprite);
+
       }
     }
-
-
 
   stage.addChild(container);
 
@@ -81,18 +67,18 @@ function mainfunction(imageArray, container) {
   container.scale.y = 0.6;
 
 // if(step=="horizontal"){
-//   for (var i = 0; i < blocksY; i++) {
+//   for (var i = 0; i < image_dimensions[i][1]; i++) {
 //       array.push([i,Math.round(Math.random())])
 //   }
 // }
 // else{
-//   for (var i = 0; i < blocksX; i++) {
+//   for (var i = 0; i < image_dimensions[i][0]; i++) {
 //       array.push([i,Math.round(Math.random())])
 //   }
 // }
-
-
-  animate();
+saveContainerChildLocations();
+renderer.render(stage);
+  //animate();
 }
 
 
@@ -102,69 +88,42 @@ function mainfunction(imageArray, container) {
     if (step == "horizontal")
       step = "vertical";
     else step = "horizontal";
-//     count += .01
-//     container.scale.x = 1 + Math.sin(count)*.4
-//     container.scale.y = 1 + Math.sin(count)*.4
-var x;
-var y;
-var broke;
-var child;
 
-if (step == "horizontal"){
-  for (y = 0; y < blocksY; y++) {
-      move = -blockSizeX*2;
-      broke = false;
-      for (x = 0; x < blocksX; x++) {
-        if(broke === false && Math.random() > 0.6){
-          move = -move;
-          broke = true;
-        }
-        child = container.getChildAt(x+ y*blocksX);
-        child.position.x = child.position.x + move;
-       }
-  }
-}
-else {
-  for (x = 0; x < blocksX; x++) {
-      move = -blockSizeY*2;
-      broke = false;
-      for (y = 0; y < blocksY; y++) {
-        if(broke === false && Math.random() > 0.5){
-          move = -move;
-          broke = true;
-        }
-        child = container.getChildAt(x+ y*blocksX);
-        child.position.y = child.position.y + move;
-       }
-  }
-}
-    // if (count == 100 && step < numSteps) {
-    //   //step++
-    //   count = 0
-    //   //ease(step)
-    //   //easeContainerOut()
-    //   return
-    // }
-    //
-    // if(step % 2 == 0) {
-    //   //container.height +=.004
-    //   container.scale.x +=.004
-    //   container.scale.y +=.004
-    // }
-    // else {
-    //   //container.height -=.004
-    //   container.scale.x -=.004
-    //   container.scale.y -=.004
-    // }
-// return
-//     count ++
-//
-//     count += 1
-//    if (count == 10) {
-      saveContainerChildLocations();
-  //    count = 0
-    //  return
-    //}
+    var x;
+    var y;
+    var broke;
+    var child;
+
+    if (step == "horizontal"){
+      for (y = 0; y < image_dimensions[i][1]; y++) {
+          move = -blockSizeX*2;
+          broke = false;
+          for (x = 0; x < image_dimensions[i][0]; x++) {
+            if(broke === false && Math.random() > 0.6){
+              move = -move;
+              broke = true;
+            }
+            child = container.getChildAt(x+ y*image_dimensions[i][0]);
+            child.position.x = child.position.x + move;
+           }
+      }
+    }
+    else {
+      for (x = 0; x < image_dimensions[i][0]; x++) {
+          move = -blockSizeY*2;
+          broke = false;
+          for (y = 0; y < image_dimensions[i][1]; y++) {
+            if(broke === false && Math.random() > 0.5){
+              move = -move;
+              broke = true;
+            }
+            child = container.getChildAt(x+ y*image_dimensions[i][0]);
+            child.position.y = child.position.y + move;
+           }
+      }
+    }
+
+    saveContainerChildLocations();
 
     renderer.render(stage);
     //requestAnimationFrame(animate);
@@ -174,17 +133,20 @@ else {
   function saveContainerChildLocations(){
     var locArray = [];
 
-    for (var y = 0; y < blocksY; y++) {
-      for (var x = 0; x < blocksX; x++) {
-        var point = container.getChildAt(x+y*blocksX).position;
+    var dimX = image_dimensions[i][0];
+    var dimY = image_dimensions[i][1];
+
+    for (var y = 0; y < dimY; y++) {
+      for (var x = 0; x < dimX; x++) {
+        var point = container.getChildAt(x+y*dimX).position;
         locArray.push([(point.x-renderer.width/2)/blockSizeX+4, (point.y-renderer.height/2)/blockSizeY+3]);
 
       }
     }
 
     var out = "";
-    for (var i = 0; i < blocksX*blocksY; i++) {
-      out += "["+locArray[i][0]+","+locArray[i][1]+"],";
+    for (var j = 0; j < dimX*dimY; j++) {
+      out += "["+locArray[j][0]+","+locArray[j][1]+"],";
     }
     console.log(out);
 

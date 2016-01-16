@@ -1,21 +1,12 @@
-//var blocksX = 4;
-//var blocksY = 3;
-var blockSizeX = 480;
-var blockSizeY = 360;
-//var numPictures = 3;
-var numSteps = 9;
-//var image_container_position = [0,0];
-var imageContainer = new PIXI.Container();
+var upperImageContainer = new PIXI.Container();
+var upperImage_position = [];
+var upperImage_dimensions = [];
+var upperChildOrderList = [];
+var upperImageArray = [];
 
 
-var childOrderList = [];
-var imageArray = [];
-var image_position = [];
-var image_dimensions = [];
-
-
-image_dimensions.push([4,3]);
-image_position.push(
+upperImage_dimensions.push([4,3]);
+upperImage_position.push(
     [
       [
         [-2,2],[-1,-2],[0,-2],[5,-2],[-2,3],[-1,-1],[0,3],[5,-1],[2,4],[3,4],[4,4],[5,0]
@@ -50,8 +41,8 @@ image_position.push(
     ]
 );
 
-image_dimensions.push([4,3]);
-image_position.push(
+upperImage_dimensions.push([4,3]);
+upperImage_position.push(
     [
       [
         [-4,0],[-3,0],[-2,-4],[-1,0],[0,5],[5,5],[6,1],[7,1],[-4,6],[1,6],[6,2],[7,6]
@@ -86,8 +77,8 @@ image_position.push(
     ]
 );
 
-image_dimensions.push([4,3]);
-image_position.push(
+upperImage_dimensions.push([4,3]);
+upperImage_position.push(
     [
       [
         [2,2],[3,-6],[8,6],[9,-2],[-2,7],[3,-1],[4,7],[9,7],[-2,8],[-1,4],[4,8],[5,8]
@@ -118,116 +109,6 @@ image_position.push(
       ],
       [
         [2,0],[3,0],[4,0],[5,4],[-2,5],[-1,5],[4,1],[5,5],[-2,6],[-1,6],[4,6],[5,6]
-      ]
-    ]
-);
-
-
-image_dimensions.push([1,1]);
-image_position.push(
-    [
-      [
-        [5,5]
-      ],
-      [
-        [4,0]
-      ],
-      [
-        [3,0]
-      ],
-      [
-        [4,0]
-      ],
-      [
-        [5,5]
-      ],
-      [
-          [5,5]
-      ],
-      [
-        [5,5]
-      ],
-      [
-              [5,5]
-      ],
-      [
-              [5,5]
-      ],
-      [
-                [5,5]
-      ]
-    ]
-);
-
-image_dimensions.push([1,1]);
-image_position.push(
-    [
-      [
-        [5,5]
-      ],
-      [
-        [5,2]
-      ],
-      [
-        [3,1]
-      ],
-      [
-        [4,0]
-      ],
-      [
-        [5,5]
-      ],
-      [
-          [5,5]
-      ],
-      [
-        [5,5]
-      ],
-      [
-              [5,5]
-      ],
-      [
-              [5,5]
-      ],
-      [
-                [5,5]
-      ]
-    ]
-);
-
-
-image_dimensions.push([1,1]);
-image_position.push(
-    [
-      [
-        [5,5]
-      ],
-      [
-        [4,1]
-      ],
-      [
-        [3,2]
-      ],
-      [
-        [4,2]
-      ],
-      [
-        [4,2]
-      ],
-      [
-        [4,2]
-      ],
-      [
-        [4,2]
-      ],
-      [
-        [4,2]
-      ],
-      [
-        [4,2]
-      ],
-      [
-        [4,2]
       ]
     ]
 );
